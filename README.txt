@@ -1,0 +1,5 @@
+Object Pool Pattern: The bullet pool instantiates the poolSize at initialization, create poolSize bullets from the bullet prefab and puts it into a queue. When the player shoots a bullet, one of the bullets in the queue is dequeued and shot forward, going for the bullet's lifetime and then deactivating before being requeued into the pool. Should the player shoot a bullet when the queue is empty, the game will default to instantiating one to prevent it from not shooting at all.
+
+Builder Pattern: TargetBuilder provides the methods for each targetPrefab to be created from, while TargetSpawner holds different presets for each target type (small/fast and large/slow). The target prefab itself holds the logic for using this information, and the GameManager actually spawns the targets in.
+
+Observer Pattern: When the target is hit, it sends a message to the ScoreManager with its point value before deleting itself. The manager adds this point value to the total score, and then invokes an event in the ScoreUI to change the visible score UI in the top left corner. In this sense, the ScoreUI is the observer.
